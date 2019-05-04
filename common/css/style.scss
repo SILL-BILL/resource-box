@@ -1,0 +1,30 @@
+// fields
+$COLOR_WH : #f5f5f5;
+$COLOR_BK : #212121;
+$COLOR_BLUE_GRAY : #263238;
+$COLOR_DARK : #333;
+$COLOR_GRAY : #616161;
+$COLOR_RED : #FF5252;
+$COLOR_BLUE : #448AFF;
+$COLOR_GREEN : #69F0AE;
+$COLOR_LIME : #EEFF41;
+$COLOR_YELLOW : #FFFF00;
+
+//mixins
+@mixin Block100Pct {
+	display: block;
+	width: 100%;
+}
+
+// components
+
+
+// container
+.container {
+	@include Block100Pct;
+	position: relative;
+	height: auto !important;
+	height: 100%;
+	min-height: 100%;
+	z-index: 0;
+}

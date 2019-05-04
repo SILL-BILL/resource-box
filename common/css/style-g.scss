@@ -1,0 +1,70 @@
+// fields
+$COLOR_WH : #f5f5f5;
+$COLOR_BK : #212121;
+$COLOR_BLUE_GRAY : #263238;
+$COLOR_DARK : #333;
+$COLOR_GRAY : #616161;
+$COLOR_RED : #FF5252;
+$COLOR_BLUE : #448AFF;
+$COLOR_GREEN : #69F0AE;
+$COLOR_LIME : #EEFF41;
+$COLOR_YELLOW : #FFFF00;
+
+//mixins
+@mixin Block100Pct {
+	display: block;
+	width: 100%;
+}
+
+// components
+
+// container
+.container {
+	@include Block100Pct;
+	overflow: hidden;
+	position: relative;
+	height: 100%;
+	z-index: 0;
+}
+
+// content-layer-wrap
+.content-layer-wrap {
+	@include Block100Pct;
+	position: absolute;
+	height: 100%;
+	z-index: 1;
+	bottom: -100%;
+	-webkit-transition: bottom .5s ease;
+	-moz-transition: bottom .5s ease;
+	-o-transition: bottom .5s ease;
+	transition: bottom .5s ease;
+	&.on {
+		bottom: 0;
+		-webkit-transition: bottom .5s ease;
+		-moz-transition: bottom .5s ease;
+		-o-transition: bottom .5s ease;
+		transition: bottom .5s ease;
+	}
+}
+
+// content-layer
+.content-layer {
+	@include Block100Pct;
+	position: relative;
+	height: 100%;
+	z-index: 0;
+	> canvas {
+		display: block;
+		position: absolute;
+		// width: 100%;
+		width: auto;
+		// height: 100%;
+		height: auto;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		margin: auto;
+		z-index: 1;
+	}
+}
