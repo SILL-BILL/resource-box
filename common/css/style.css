@@ -1,10 +1,2 @@
-.container {
-  display: block;
-  width: 100%;
-  position: relative;
-  height: auto !important;
-  height: 100%;
-  min-height: 100%;
-  z-index: 0; }
-
+.container{display:block;width:100%;position:relative;height:auto !important;height:100%;min-height:100%;z-index:0}
 /*# sourceMappingURL=style.css.map */
