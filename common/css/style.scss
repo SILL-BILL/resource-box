@@ -1,3 +1,5 @@
+@charset "UTF-8";
+
 // fields
 $COLOR_WH : #f5f5f5;
 $COLOR_BK : #212121;
@@ -9,15 +11,30 @@ $COLOR_BLUE : #448AFF;
 $COLOR_GREEN : #69F0AE;
 $COLOR_LIME : #EEFF41;
 $COLOR_YELLOW : #FFFF00;
+$IMG_PATH : '../img/';
+$prefix_list : '-webkit-' , '-moz-' , '-ms-', '-o-', '';
 
 //mixins
 @mixin Block100Pct {
 	display: block;
 	width: 100%;
 }
+// プロパティにプレフィックスを付与
+@mixin PropertySetPrefix($name, $value) {
+	@each $prefix in $prefix_list {
+		#{$prefix}#{$name}: $value;
+	}
+}
+// 値にプレフィックスを付与
+@mixin ValueSetPrefix($name, $value) {
+	@each $prefix in $set_prefix {
+		#{$name}: #{$prefix}$value;
+	}
+}
 
+// ==============
 // components
-
+// ==============
 
 // container
 .container {
