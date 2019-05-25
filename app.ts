@@ -9,6 +9,8 @@ class MainScene extends Phaser.Scene
 	private m_TimeText:Phaser.GameObjects.Text;
 	private m_TimeElapsed:number;
 	private m_ParticleEmitterManager : Phaser.GameObjects.Particles.ParticleEmitterManager;
+	private m_BtnA:Phaser.GameObjects.Sprite;
+	private m_BtnB;
 
 	constructor(_main:Main)
 	{
@@ -22,6 +24,7 @@ class MainScene extends Phaser.Scene
 		this.load.image('bg', 'instant-0000/bg.png');
 		this.load.image('logo', 'instant-0000/logo.png');
 		this.load.image('par-001', 'instant-0000/eff-par-001.png');
+		this.load.atlas('btn-gamepad', 'common/img/phaser3-btn-gamepad/sprite.png','common/img/phaser3-btn-gamepad/sprite.json');
 	}
 	public create():void
 	{
@@ -40,11 +43,20 @@ class MainScene extends Phaser.Scene
 
 		this.m_Logo = this.add.image(this.m_main.CANVAS_WIDTH/2,this.m_main.CANVAS_HEIGHT/2,'logo');
 
+
+
 		this.m_TimeText = this.add.text(
 			0,0,
 			'Time : xxxx',
 			{fontFamily:'Arial', fontSize:48, color:'#f5f5f5'}
 		);
+
+		this.m_BtnA = this.add.sprite(this.m_main.CANVAS_WIDTH/2,this.m_main.CANVAS_HEIGHT/2,'btn-gamepad','0000-a').setInteractive();
+		this.m_BtnA.setTexture('btn-gamepad','0003-b');
+
+		// this.m_BtnA.setFrame(3);
+
+//console.dir(this.m_BtnA);
 
 	}
 	public update(_time,_delta):void

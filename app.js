@@ -24,6 +24,7 @@ var MainScene = /** @class */ (function (_super) {
         this.load.image('bg', 'instant-0000/bg.png');
         this.load.image('logo', 'instant-0000/logo.png');
         this.load.image('par-001', 'instant-0000/eff-par-001.png');
+        this.load.atlas('btn-gamepad', 'common/img/phaser3-btn-gamepad/sprite.png', 'common/img/phaser3-btn-gamepad/sprite.json');
     };
     MainScene.prototype.create = function () {
         this.m_Bg = this.add.image(this.m_main.CANVAS_WIDTH / 2, this.m_main.CANVAS_HEIGHT / 2, 'bg');
@@ -39,6 +40,10 @@ var MainScene = /** @class */ (function (_super) {
         });
         this.m_Logo = this.add.image(this.m_main.CANVAS_WIDTH / 2, this.m_main.CANVAS_HEIGHT / 2, 'logo');
         this.m_TimeText = this.add.text(0, 0, 'Time : xxxx', { fontFamily: 'Arial', fontSize: 48, color: '#f5f5f5' });
+        this.m_BtnA = this.add.sprite(this.m_main.CANVAS_WIDTH / 2, this.m_main.CANVAS_HEIGHT / 2, 'btn-gamepad', '0000-a').setInteractive();
+        this.m_BtnA.setTexture('btn-gamepad', '0003-b');
+        // this.m_BtnA.setFrame(3);
+        //console.dir(this.m_BtnA);
     };
     MainScene.prototype.update = function (_time, _delta) {
         if (this.m_TimeElapsed <= 0) {
