@@ -25,8 +25,25 @@ var MainScene = /** @class */ (function (_super) {
         this.load.image('logo', 'instant-0000/logo.png');
         this.load.image('par-001', 'instant-0000/eff-par-001.png');
         this.load.atlas('btn-gamepad', 'common/img/phaser3-btn-gamepad/sprite.png', 'common/img/phaser3-btn-gamepad/sprite.json');
+        this.load.audio('decision', [
+            'common/audio/decision/0.ogg',
+            'common/audio/decision/0.mp3'
+        ]);
+        this.load.audio('cancel', [
+            'common/audio/cancel/0.ogg',
+            'common/audio/cancel/0.mp3'
+        ]);
+        this.load.audio('cursor', [
+            'common/audio/cursor/0.ogg',
+            'common/audio/cursor/0.mp3'
+        ]);
+        this.load.audio('bgm-into-the-galaxy', [
+            'instant-0000/bgm-into-the-galaxy/0.ogg',
+            'instant-0000/bgm-into-the-galaxy/0.mp3'
+        ]);
     };
     MainScene.prototype.create = function () {
+        var _this = this;
         this.m_Bg = this.add.image(this.m_main.CANVAS_WIDTH / 2, this.m_main.CANVAS_HEIGHT / 2, 'bg');
         this.m_ParticleEmitterManager = this.add.particles('par-001');
         this.m_ParticleEmitterManager.createEmitter({
@@ -39,11 +56,33 @@ var MainScene = /** @class */ (function (_super) {
             blendMode: Phaser.BlendModes.ADD
         });
         this.m_Logo = this.add.image(this.m_main.CANVAS_WIDTH / 2, this.m_main.CANVAS_HEIGHT / 2, 'logo');
-        this.m_TimeText = this.add.text(0, 0, 'Time : xxxx', { fontFamily: 'Arial', fontSize: 48, color: '#f5f5f5' });
-        this.m_BtnA = this.add.sprite(this.m_main.CANVAS_WIDTH / 2, this.m_main.CANVAS_HEIGHT / 2, 'btn-gamepad', '0000-a').setInteractive();
-        this.m_BtnA.setTexture('btn-gamepad', '0003-b');
-        // this.m_BtnA.setFrame(3);
-        //console.dir(this.m_BtnA);
+        this.m_TimeText = this.add.text(40, 40, 'Time : xxxx', { fontFamily: 'Arial', fontSize: 48, color: '#f5f5f5' });
+        this.m_BtnA = this.add.image(this.m_main.CANVAS_WIDTH - 70 - 40, this.m_main.CANVAS_HEIGHT - 110, 'btn-gamepad', 'a').setInteractive();
+        this.m_BtnA.on('pointerdown', function () {
+            _this.sound.play('decision');
+            _this.m_BtnA.setTexture('btn-gamepad', 'a-pressed');
+        }, this);
+        this.m_BtnA.on('pointerup', function () { _this.m_BtnA.setTexture('btn-gamepad', 'a'); }, this);
+        this.m_BtnB = this.add.image(this.m_main.CANVAS_WIDTH - 70 - 40 - 140 - 40, this.m_main.CANVAS_HEIGHT - 110, 'btn-gamepad', 'b').setInteractive();
+        this.m_BtnB.on('pointerdown', function () {
+            _this.sound.play('cancel');
+            _this.m_BtnB.setTexture('btn-gamepad', 'b-pressed');
+        }, this);
+        this.m_BtnB.on('pointerup', function () { _this.m_BtnB.setTexture('btn-gamepad', 'b'); }, this);
+        this.m_BtnLeft = this.add.image(70 + 40, this.m_main.CANVAS_HEIGHT - 110, 'btn-gamepad', 'left').setInteractive();
+        this.m_BtnLeft.on('pointerdown', function () {
+            _this.sound.play('cursor');
+            _this.m_BtnLeft.setTexture('btn-gamepad', 'left-pressed');
+        }, this);
+        this.m_BtnLeft.on('pointerup', function () { _this.m_BtnLeft.setTexture('btn-gamepad', 'left'); }, this);
+        this.m_BtnRight = this.add.image(70 + 40 + 140 + 40, this.m_main.CANVAS_HEIGHT - 110, 'btn-gamepad', 'right').setInteractive();
+        this.m_BtnRight.on('pointerdown', function () {
+            _this.sound.play('cursor');
+            _this.m_BtnRight.setTexture('btn-gamepad', 'right-pressed');
+        }, this);
+        this.m_BtnRight.on('pointerup', function () { _this.m_BtnRight.setTexture('btn-gamepad', 'right'); }, this);
+        this.m_Bgm = this.sound.add('bgm-into-the-galaxy', { loop: true });
+        this.m_Bgm.play();
     };
     MainScene.prototype.update = function (_time, _delta) {
         if (this.m_TimeElapsed <= 0) {
